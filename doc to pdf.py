@@ -1,6 +1,6 @@
 import os
 import comtypes.client
-
+#
 wdFormatPDF = 17  # number of format in M.Word application
 
 input_dir = r'C:\Users\alekz\OneDrive\Рабочий стол\Загрузка ФГИС\Февраль\Бывалово\Январь\docx'
