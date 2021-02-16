@@ -1,4 +1,5 @@
 import os
+
 import comtypes.client
 
 wdFormatPDF = 17  # number of format in M.Word application
@@ -11,15 +12,15 @@ for dirs, dirs_name, files in os.walk(input_dir):
     try:
         os.stat(dirs.replace('Архив ПТМ', 'Архив ИЦ'))  # check specified directory
     except:
-        os.mkdir(dirs.replace('Архив ПТМ', 'Архив ИЦ'))  # create a directory if dosnt have
+        os.mkdir(dirs.replace('Архив ПТМ', 'Архив ИЦ'))  # create a directory if doesn't have
     for file in files:
         check_file = file.split('.')[1]
         if check_file == 'doc' or check_file == 'docx':
             print('Найден файл:', file)
             print('Идет процесс конвертации в PDF')
-            output_file = file.split('.')[0]  # splits the str by 2, makes a list, and passes the first str to the variable
+            output_file = file.split('.')[0]  # splits the str by 2, makes a list, and passes the first str to the var
             out_file = dirs + '\\' + output_file + '.pdf'
-            word = comtypes.client.CreateObject('Word.Application', dynamic=True)  # without "dynamic" dont work
+            word = comtypes.client.CreateObject('Word.Application', dynamic=True)  # without "dynamic" don't work
             word.Visible = False  # works together with both True and False
             in_file = os.path.join(dirs, file)
             doc = word.Documents.Open(in_file)
@@ -32,9 +33,7 @@ for dirs, dirs_name, files in os.walk(input_dir):
 print('Success! Program converted', counter, 'files')
 print(input('Press ENTER to exit'))
 
-
-            # todo:
-            #0. Сделать GUI
-            #1. Сделать прогресс бар
-            #2. Прикрутить кнопку Отмена
-            #3. Сделать exe
+# todo:
+# 0. Сделать GUI
+# 1. Сделать прогресс бар
+# 2. Прикрутить кнопку Отмена
