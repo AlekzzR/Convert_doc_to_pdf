@@ -2,6 +2,7 @@ import os
 import comtypes.client
 
 wdFormatPDF = 17  # number of format in M.Word application
+counter = 0
 
 input_dir = r'C:\Users\alekz\OneDrive\Рабочий стол\doc_to_pdf\Архив ПТМ'
 output_dir = r'C:\Users\alekz\OneDrive\Рабочий стол\doc_to_pdf\Архив ИЦ'
@@ -26,3 +27,14 @@ for dirs, dirs_name, files in os.walk(input_dir):
             doc.Close()
             word.Quit()
             print('Создан файл:', out_file.replace('Архив ПТМ', 'Архив ИЦ'))
+            counter += 1
+            print('______________')
+print('Success! Program converted', counter, 'files')
+print(input('Press ENTER to exit'))
+
+
+            # todo:
+            #0. Сделать GUI
+            #1. Сделать прогресс бар
+            #2. Прикрутить кнопку Отмена
+            #3. Сделать exe
