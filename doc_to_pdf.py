@@ -4,8 +4,8 @@ import tkinter.messagebox
 import comtypes.client
 import tkinter.filedialog as fd
 
+
 wdFormatPDF = 17  # number of format in M.Word application
-counter = 0
 
 class MyGUI:
     def __init__(self):
@@ -16,12 +16,15 @@ class MyGUI:
         self.label3 = tk.Label(self.main_window, text='  ')
         self.label4 = tk.Label(self.main_window, text='  ')
         self.label5 = tk.Label(self.main_window, text='  ')
-        self.button_dir = tk.Button(self.main_window, text='  Выбрать папку  ', command=self.choose_directory)
-        self.button_start = tk.Button(self.main_window, text='  Погнали  ', command=self.loop)
-        self.button_exit = tk.Button(self.main_window,text='  Выход  ', command=self.main_window.destroy)
+        self.value = tk.StringVar()
+        self.label6 = tk.Label(self.main_window, textvariable=self.value)
+        self.button_dir = tk.Button(self.main_window, text='  Выбрать папку  ', command=self.choose_directory, background="#999")
+        self.button_start = tk.Button(self.main_window, text='  Конвертировать в PDF  ', command=self.loop, background="#789", font="12")
+        self.button_exit = tk.Button(self.main_window,text='  Выход  ', command=self.main_window.destroy, background="#988")
         self.label2.pack()
         self.label1.pack()
         self.button_dir.pack()
+        self.label6.pack()
         self.label3.pack()
         self.button_start.pack()
         self.label4.pack()
@@ -31,6 +34,7 @@ class MyGUI:
 
     def choose_directory(self):
         self.directory = fd.askdirectory(title="Открыть папку", initialdir="/")
+        self.value.set(self.directory)
         if self.directory:
             print(self.directory)
             return self.directory
@@ -62,7 +66,6 @@ class MyGUI:
                        self.counter += 1
                        print('______________')
            self.show_info()
-           print('Преобразовано', self.counter, "файлов")
        except AttributeError:
            self.show_error()
     def show_info(self):
