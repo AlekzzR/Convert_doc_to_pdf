@@ -43,9 +43,9 @@ class MyGUI:
        try:
            for dirs, dirs_name, files in os.walk(self.directory.replace('/', '\\')):
                try:
-                   os.stat(dirs.replace('Архив ПТМ', 'Архив ИЦ'))  # check specified directory
+                   os.stat(dirs.replace('AРХИВ ООО ПТМ', 'Архив ИЦ'))  # check specified directory
                except:
-                   os.mkdir(dirs.replace('Архив ПТМ', 'Архив ИЦ'))  # create a directory if doesn't have
+                   os.mkdir(dirs.replace('AРХИВ ООО ПТМ', 'Архив ИЦ'))  # create a directory if doesn't have
                for file in files:
                    check_file = file.split('.')[1]
                    if check_file == 'doc' or check_file == 'docx':
@@ -59,10 +59,10 @@ class MyGUI:
                        word.Visible = False  # works together with both True and False
                        in_file = os.path.join(dirs, file)
                        doc = word.Documents.Open(in_file)
-                       doc.SaveAs(out_file.replace('Архив ПТМ', 'Архив ИЦ'), wdFormatPDF)
+                       doc.SaveAs(out_file.replace('AРХИВ ООО ПТМ', 'Архив ИЦ'), wdFormatPDF)
                        doc.Close()
                        word.Quit()
-                       print('Создан файл:', out_file.replace('Архив ПТМ', 'Архив ИЦ'))
+                       print('Создан файл:', out_file.replace('AРХИВ ООО ПТМ', 'Архив ИЦ'))
                        self.counter += 1
                        print('______________')
            self.show_info()
@@ -80,7 +80,5 @@ my_gui = MyGUI()
 #print(input('Press ENTER to exit'))
 
 # todo:
-# 0. Вывести информационное диалоговое окно по окончании со статистикой
-# 0.1 Прикрутить кнопку Выход
 # 1. Сделать прогресс бар
-# 2. Прикрутить кнопку Отмена
+# 2. Сделать StringVar на конвертируемые файлы JIT
