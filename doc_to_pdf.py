@@ -7,20 +7,22 @@ import tkinter.filedialog as fd
 
 wdFormatPDF = 17  # number of format in M.Word application
 
-class MyGUI:
+class MyGUI(tk.Tk):
     def __init__(self):
+        super().__init__()
         self.counter = 0
-        self.main_window = tk.Tk()
-        self.label1 = tk.Label(self.main_window, text='  ')
-        self.label2 = tk.Label(self.main_window, text='Программа для конвертации файлов doc в pdf')
-        self.label3 = tk.Label(self.main_window, text='  ')
-        self.label4 = tk.Label(self.main_window, text='  ')
-        self.label5 = tk.Label(self.main_window, text='  ')
+        self.label1 = tk.Label(self, text='  ')
+        self.label2 = tk.Label(self, text='Программа для конвертации файлов doc в pdf')
+        self.label3 = tk.Label(self, text='  ')
+        self.label4 = tk.Label(self, text='  ')
+        self.label5 = tk.Label(self, text='  ')
         self.value = tk.StringVar()
-        self.label6 = tk.Label(self.main_window, textvariable=self.value)
-        self.button_dir = tk.Button(self.main_window, text='  Выбрать папку  ', command=self.choose_directory, background="#999")
-        self.button_start = tk.Button(self.main_window, text='  Конвертировать в PDF  ', command=self.loop, background="#789", font="12")
-        self.button_exit = tk.Button(self.main_window,text='  Выход  ', command=self.main_window.destroy, background="#988")
+        self.label6 = tk.Label(self, textvariable=self.value)
+        self.button_dir = tk.Button(self, text='  Выбрать папку  ', command=self.choose_directory,
+                                    background="#999", relief=tk.GROOVE)
+        self.button_start = tk.Button(self, text='  Конвертировать в PDF  ', command=self.loop,
+                                      background="#999", relief=tk.GROOVE)
+        self.button_exit = tk.Button(self,text='  Выход  ', command=self.destroy, background="#999", relief=tk.GROOVE)
         self.label2.pack()
         self.label1.pack()
         self.button_dir.pack()
@@ -30,7 +32,6 @@ class MyGUI:
         self.label4.pack()
         self.button_exit.pack()
         self.label5.pack()
-        tk.mainloop()
 
     def choose_directory(self):
         self.directory = fd.askdirectory(title="Открыть папку", initialdir="/")
@@ -44,6 +45,7 @@ class MyGUI:
            for dirs, dirs_name, files in os.walk(self.directory.replace('/', '\\')):
                try:
                    os.stat(dirs.replace('AРХИВ ООО ПТМ', 'Архив ИЦ'))  # check specified directory
+                   print(dirs)
                except:
                    os.mkdir(dirs.replace('AРХИВ ООО ПТМ', 'Архив ИЦ'))  # create a directory if doesn't have
                for file in files:
@@ -74,8 +76,10 @@ class MyGUI:
        tk.messagebox.showinfo('Ошибка', 'Не выбрана папка с файлами')
 
 
-
-my_gui = MyGUI()
+if __name__ == '__main__':
+    my_gui = MyGUI()
+    my_gui.title('Converter to PDF')
+    my_gui.mainloop()
 #print('Success! Program converted', counter, 'files')
 #print(input('Press ENTER to exit'))
 
