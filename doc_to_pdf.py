@@ -19,10 +19,11 @@ class MyGUI(tk.Tk):
         self.value = tk.StringVar()
         self.label6 = tk.Label(self, textvariable=self.value)
         self.button_dir = tk.Button(self, text='  Выбрать папку  ', command=self.choose_directory,
-                                    background="#999", relief=tk.GROOVE)
+                                    background="#f8f8ff", relief=tk.SOLID)
         self.button_start = tk.Button(self, text='  Конвертировать в PDF  ', command=self.loop,
-                                      background="#999", relief=tk.GROOVE)
-        self.button_exit = tk.Button(self,text='  Выход  ', command=self.destroy, background="#999", relief=tk.GROOVE)
+                                      background="#f8f8ff", relief=tk.SOLID)
+        self.button_exit = tk.Button(self,text='  Выход  ', command=self.destroy,
+                                     background="#f8f8ff", relief=tk.SOLID)
         self.label2.pack()
         self.label1.pack()
         self.button_dir.pack()
@@ -85,4 +86,4 @@ if __name__ == '__main__':
 
 # todo:
 # 1. Сделать прогресс бар
-# 2. Сделать StringVar на конвертируемые файлы JIT
+
